@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN"> 
+<head> 
+	<title>加密解密</title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<meta http-equiv="Content-Language" content="zh-CN" /> 
+	<link rel="stylesheet" href="css/basic-20120912.css" type="text/css"/> 
+	<link rel="stylesheet" href='css/bootstrap.min.css' type="text/css"/>
+</head>
+<body>
+	<div id="mainContent" class="wrapper">
+		<div class="toolUsing clearfix">
+			<div class="toolsTab  clearfix">
+			    <ul class="nav nav-tabs">
+			    	<li class='active'><a>加密/解密</a></li>
+			    </ul>
+			    <div class='clear'></div>
+			</div>
+			<div class="leftBar">
+				<div class="title">明文:</div>
+		    	<textarea name='message' id='msg_source' class="text_source"></textarea>
+		    </div>
+			<div class="operateLR">
+				<div class="OptDetail">
+		    		<label>加密算法:</label>
+					<ul>
+		                <li><label for="aes" class="radio"><input type="radio" name="encrypt_type" value="aes" checked="checked" id="aes"/>AES</label></li>
+		            	<li><label for="des" class="radio"><input type="radio" name="encrypt_type" value="des" id="des"/>DES</label></li>
+		            	<li><label for="rc4" class="radio"><input type="radio" name="encrypt_type" value="rc4" id="rc4"/>RC4</label></li>
+		    			<li><label for="rabbit" class="radio"><input type="radio" name="encrypt_type" value="rabbit" id="rabbit"/>Rabbit</label></li>
+		    			<li><label for="tripledes" class="radio"><input type="radio" name="encrypt_type" value="tripledes" id="tripledes"/>TripleDes</label></li>
+		            </ul>
+		        </div>
+				<div class="OptDetail Button">
+		    		<label class="input">密码:
+		    		<input type="password" id="pwd"/>
+					</label>
+					<ul>
+			            <li><button class="btn btn-primary" onclick="javascript:encrypt();">加密 &gt;</button></li>
+			            <li><button class="btn btn-primary" onclick="javascript:decrypt();">&lt; 解密</button></li>
+					</ul>
+		        </div>
+			</div>
+			<div class="rightBar">
+				<div class="title">密文:</div>
+				<textarea name='cipher' id='encrypt_result' onclick="this.focus();this.select();"></textarea>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src='js/jquery/jquery-1.7.2.js'></script>
+	<script type="text/javascript" src="js/CryptoJS/components/core-min.js"></script>
+	<script type="text/javascript" src="js/CryptoJS/rollups/aes.js"></script>
+	<script type="text/javascript" src="js/CryptoJS/rollups/rc4.js"></script>
+	<script type="text/javascript" src="js/CryptoJS/rollups/rabbit.js"></script>
+	<script type="text/javascript" src="js/CryptoJS/rollups/tripledes.js"></script>
+	<script type='text/javascript'>
+		    function encrypt(){
+			    switch($('input[name="encrypt_type"]:checked').val()){
+			    	case "aes":
+				    	$("#encrypt_result").val(CryptoJS.AES.encrypt($("#msg_source").val(),$("#pwd").val()));
+				    	break;
+			    	case "des":
+			    		$("#encrypt_result").val(CryptoJS.DES.encrypt($("#msg_source").val(),$("#pwd").val()));
+				    	break;
+				    case "rabbit":
+				    	$("#encrypt_result").val(CryptoJS.Rabbit.encrypt($("#msg_source").val(),$("#pwd").val()));
+				    	break;
+				    case "rc4":
+				    	$("#encrypt_result").val(CryptoJS.RC4.encrypt($("#msg_source").val(),$("#pwd").val()));
+				    	break;
+				    case "tripledes":
+				    	$("#encrypt_result").val(CryptoJS.TripleDES.encrypt($("#msg_source").val(),$("#pwd").val()));
+				    	break;
+				}
+		    }
+			function decrypt(){
+			    switch($('input[name="encrypt_type"]:checked').val()){
+			    	case "aes":
+				    	$("#msg_source").val(CryptoJS.AES.decrypt($("#encrypt_result").val(),$("#pwd").val()).toString(CryptoJS.enc.Utf8));
+				    	break;
+			    	case "des":
+			    		$("#msg_source").val(CryptoJS.DES.decrypt($("#encrypt_result").val(),$("#pwd").val()).toString(CryptoJS.enc.Utf8));
+				    	break;
+				    case "rabbit":
+				    	$("#msg_source").val(CryptoJS.Rabbit.decrypt($("#encrypt_result").val(),$("#pwd").val()).toString(CryptoJS.enc.Utf8));
+				    	break;
+				    case "rc4":
+				    	$("#msg_source").val(CryptoJS.RC4.decrypt($("#encrypt_result").val(),$("#pwd").val()).toString(CryptoJS.enc.Utf8));
+				    	break;
+				    case "tripledes":
+				    	$("#msg_source").val(CryptoJS.TripleDES.decrypt($("#encrypt_result").val(),$("#pwd").val()).toString(CryptoJS.enc.Utf8));
+				    	break;
+				   }
+		    }
+	</script>
+</body>
+</html>

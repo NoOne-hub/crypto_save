@@ -1,0 +1,92 @@
+/* 公共部分 */
+body,h1,h2,h3,h4,h5,h6,hr,img,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,a,tr
+	{
+	margin: 0;
+	padding: 0;
+}
+
+body,button,input,select,textarea {
+	font-size: 14px;
+	font-family: Microsoft YaHei, 微软雅黑, Verdana, sans-serif, 宋体;
+	background-color: #fff;
+	line-height: 18px;
+}
+
+ul,li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #006cbf;
+}
+
+a:hover {
+	color: #ff9600;
+	cursor: pointer;
+}
+
+input {
+	border: none;
+}
+
+.wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.clearfix:after {
+	clear: both;
+	content: " ";
+	display: block;
+	font-size: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+.clearfix {
+	display: block;
+	height: 1%;
+}
+/* END 公共部分 */
+
+/*  public  */
+#mainContent textarea,#mainContent input[type='text'] { /*  定义textarea和input边框样式  */
+	border: 1px solid #ccc;
+}
+
+.toolUsing {
+	margin-top: 30px;
+}
+/*  END public  */
+
+/*  左右版式  */
+.leftBar {
+	float: left;
+}
+
+.rightBar {
+	float: right;
+}
+
+.leftBar textarea,.rightBar textarea {
+	width: 410px;
+	height: 290px;
+}
+
+.operateLR {
+	float: left;
+	width: 136px;
+	text-align: center;
+	margin: 30px 5px 0 5px;
+}
+/*  END 左右版式  */
+
+/* page */
+.leftBar .title,.rightBar .title{margin-bottom:10px;}
+.OptDetail{text-align:left;margin-left:10px;}
+.OptDetail li{width:120px;margin:5px 0px 10px 0px;}
+.Button input{margin:5px 0px 10px 0px;}
+#pwd{width:110px;}
+
+/* END page */
